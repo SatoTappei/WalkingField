@@ -8,13 +8,14 @@ using UnityEngine;
 public class MoveCommand : ICommand
 {
     /// <summary>カーソルの移動をするメソッドが書かれたクラスへの参照を持たせる</summary>
-    CursorMove _cursorMove;
+    static CursorMove _cursorMove;
     /// <summary>方向</summary>
     Direction _dir;
 
-    public MoveCommand(CursorMove cursorMove, Direction dir)
+    public MoveCommand(Direction dir)
     {
-        _cursorMove = cursorMove;
+        if (_cursorMove == null)
+            _cursorMove = Object.FindObjectOfType<CursorMove>();
         _dir = dir;
     }
 
