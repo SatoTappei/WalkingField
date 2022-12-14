@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 /// <summary>
 /// コマンドを管理するクラス
@@ -10,7 +11,9 @@ public class CommandManager
     static Stack<ICommand> _undoStack = new Stack<ICommand>();
     static Stack<ICommand> _redoStack = new Stack<ICommand>();
 
-    public void Execute(ICommand command)
+    static Stack<Direction> _dirStack = new Stack<Direction>();
+
+    public void ExecuteCommand(ICommand command)
     {
         command.Execute();
 
@@ -39,4 +42,9 @@ public class CommandManager
             command.Execute();
         }
     }
+
+    public void AddDirStack(Direction dir) => _dirStack.Push(dir);
+
+    /// <summary>方向が格納されているスタックをリストに変換して取得する</summary>
+    public List<Direction> GetDirList() => _dirStack.ToList();
 }

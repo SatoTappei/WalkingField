@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class InputCommand : MonoBehaviour
 {
     [SerializeField] CursorMove _cursorMove;
+    [SerializeField] PlayerMove _playerMove;
     [Space(10)]
     [SerializeField] Button _upArrow;
     [SerializeField] Button _downArrow;
@@ -28,6 +29,7 @@ public class InputCommand : MonoBehaviour
         _rightArrow.onClick.AddListener(OnRightClicked);
         _undo.onClick.AddListener(OnUndoClicked);
         _redo.onClick.AddListener(OnRedoClicked);
+        _submit.onClick.AddListener(OnSubmitClicked);
 
         _commandManager = new CommandManager();
     }
@@ -42,7 +44,9 @@ public class InputCommand : MonoBehaviour
         // コマンドインターフェースを実装した移動コマンドクラスのインスタンスを生成する
         ICommand command = new MoveCommand(_cursorMove, dir);
         // 直接するのではなくコマンドマネージャーのメソッドで呼ぶ
-        _commandManager.Execute(command);
+        _commandManager.ExecuteCommand(command);
+
+        _commandManager.AddDirStack(dir);
     }
 
     void OnUpClicked()
@@ -77,6 +81,6 @@ public class InputCommand : MonoBehaviour
 
     void OnSubmitClicked()
     {
-
+        StartCoroutine(_playerMove.Move(_commandManager.GetDirList()));
     }
 }

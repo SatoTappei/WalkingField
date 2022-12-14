@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class MoveCommand : ICommand
 {
-    /// <summary>プレイヤーの移動をするメソッドが書かれたクラスへの参照を持たせる</summary>
+    /// <summary>カーソルの移動をするメソッドが書かれたクラスへの参照を持たせる</summary>
     CursorMove _cursorMove;
     /// <summary>方向</summary>
     Direction _dir;
