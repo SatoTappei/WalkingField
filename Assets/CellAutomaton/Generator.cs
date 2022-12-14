@@ -27,7 +27,7 @@ public class Generator : MonoBehaviour
             // 画面端の4辺は海にしたいので処理を行わない <= 現状完全ランダムなので海にするよう直す
             for (int y = 1; y < _height - 1; y++)
                 for (int x = 1; x < _width - 1; x++)
-                {
+                {      
                     // 周囲8マス
                     int lux = x - 1;
                     int luy = y - 1;
@@ -46,13 +46,14 @@ public class Generator : MonoBehaviour
                         }
 
                     // 4つ以上あれば次はそのマスになる
-                    temp[y, x] = count >= 4 ? 1 - map[y, x] : map[y, x];
+                    temp[y, x] = count >= 5 ? 1 - map[y, x] : map[y, x];
                 }
 
             // 一時保存しておいたマップデータを次の世代として複製する
             map = temp;
             // 次の世代を生成
             Next(map);
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Q));
         } 
     }
 
@@ -106,5 +107,7 @@ public class Generator : MonoBehaviour
                 // 処理負荷的にここで生成してしまうのが良い
                 Instantiate(go, new Vector3(px, py, 0), Quaternion.identity, transform);
             }
+
+        //
     }
 }
