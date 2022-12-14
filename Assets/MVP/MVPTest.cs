@@ -9,7 +9,7 @@ using UniRx;
 /// </summary>
 public class MVPTest : MonoBehaviour
 {
-    // 経過ターン、決定ボタンが押されるたびに+1される
+    // 経過ターン、決定ボタンが押されるたびに+1される予定
     ReactiveProperty<int> _progTurn = new ReactiveProperty<int>(0);
 
     public IReadOnlyReactiveProperty<int> ProgTurn => _progTurn;
