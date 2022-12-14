@@ -18,12 +18,18 @@ public class InputCommand : MonoBehaviour
     [SerializeField] Button _redo;
     [SerializeField] Button _submit;
 
+    CommandManager _commandManager;
+
     void Start()
     {
         _upArrow.onClick.AddListener(OnUpClicked);
         _downArrow.onClick.AddListener(OnDownClicked);
         _leftArrow.onClick.AddListener(OnLeftClicked);
         _rightArrow.onClick.AddListener(OnRightClicked);
+        _undo.onClick.AddListener(OnUndoClicked);
+        _redo.onClick.AddListener(OnRedoClicked);
+
+        _commandManager = new CommandManager();
     }
 
     void Update()
@@ -35,8 +41,8 @@ public class InputCommand : MonoBehaviour
     {
         // コマンドインターフェースを実装した移動コマンドクラスのインスタンスを生成する
         ICommand command = new MoveCommand(_cursorMove, dir);
-        // コマンドインターフェースに定義されているExecute()メソッドを実行
-        command.Execute();
+        // 直接するのではなくコマンドマネージャーのメソッドで呼ぶ
+        _commandManager.Execute(command);
     }
 
     void OnUpClicked()
@@ -61,12 +67,12 @@ public class InputCommand : MonoBehaviour
 
     void OnUndoClicked()
     {
-
+        _commandManager.UndoCommand();
     }
 
     void OnRedoClicked()
     {
-
+        _commandManager.RedoCommand();
     }
 
     void OnSubmitClicked()
