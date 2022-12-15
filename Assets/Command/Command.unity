@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11eaa1b209cb6ea4084532e8f4498aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cursorMove: {fileID: 460553286}
   _upArrow: {fileID: 3923763979452497486}
   _downArrow: {fileID: 3923763979718725990}
   _leftArrow: {fileID: 3923763979570403517}
@@ -454,6 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eedf602beed2954eab6c55ffa204ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cellSize: 1.2
 --- !u!1 &1154002170
 GameObject:
   m_ObjectHideFlags: 0

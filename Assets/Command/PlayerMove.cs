@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class PlayerMove : MonoBehaviour
 {
+    [SerializeField] float _cellSize = 1;
+    [SerializeField] float _speed = 0.1f;
+
     void Start()
     {
         
@@ -18,33 +21,31 @@ public class PlayerMove : MonoBehaviour
     }
 
     /// <summary>渡されたコマンドのリストの通りに移動する</summary>
-    public IEnumerator Move(List<Direction> list)
+    public IEnumerator Move(Queue<Direction> queue)
     {
-        list.Reverse();
-
-        foreach (Direction d in list)
+        foreach (Direction d in queue)
         {
             Vector3 pos = transform.position;
 
             switch (d)
             {
                 case Direction.Up:
-                    pos.y += 1.2f;
+                    pos.y += _cellSize;
                     break;
                 case Direction.Down:
-                    pos.y -= 1.2f;
+                    pos.y -= _cellSize;
                     break;
                 case Direction.Left:
-                    pos.x -= 1.2f;
+                    pos.x -= _cellSize;
                     break;
                 case Direction.Right:
-                    pos.x += 1.2f;
+                    pos.x += _cellSize;
                     break;
             }
 
             transform.position = pos;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(_speed);
         }
     }
 }

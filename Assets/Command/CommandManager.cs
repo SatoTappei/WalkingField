@@ -11,7 +11,8 @@ public class CommandManager
     static Stack<ICommand> _undoStack = new Stack<ICommand>();
     static Stack<ICommand> _redoStack = new Stack<ICommand>();
 
-    static Stack<Direction> _dirStack = new Stack<Direction>();
+    static Stack<Direction> _undoDirStack = new Stack<Direction>();
+    static Stack<Direction> _redoDirStack = new Stack<Direction>();
 
     public void ExecuteCommand(ICommand command)
     {
@@ -23,6 +24,12 @@ public class CommandManager
         _redoStack.Clear();
     }
 
+    public void AddDirStack(Direction dir)
+    {
+        _undoDirStack.Push(dir);
+        _redoDirStack.Clear();
+    }
+
     public void UndoCommand()
     {
         if (_undoStack.Count > 0)
@@ -30,6 +37,12 @@ public class CommandManager
             ICommand command = _undoStack.Pop();
             _redoStack.Push(command);
             command.Undo();
+        }
+
+        if(_undoDirStack.Count > 0)
+        {
+            Direction dir = _undoDirStack.Pop();
+            _redoDirStack.Push(dir);
         }
     }
 
@@ -41,10 +54,22 @@ public class CommandManager
             _undoStack.Push(command);
             command.Execute();
         }
+
+        if (_redoDirStack.Count > 0)
+        {
+            Direction dir = _redoDirStack.Pop();
+            _undoDirStack.Push(dir);
+        }
     }
 
-    public void AddDirStack(Direction dir) => _dirStack.Push(dir);
+    /// <summary>方向が格納されているスタックをキュー変換して取得する</summary>
+    public Queue<Direction> GetDirQueue()
+    {
+        Queue<Direction> q = new Queue<Direction>();
 
-    /// <summary>方向が格納されているスタックをリストに変換して取得する</summary>
-    public List<Direction> GetDirList() => _dirStack.ToList();
+        foreach (var v in _undoDirStack.Reverse())
+            q.Enqueue(v);
+
+        return q;
+    }
 }

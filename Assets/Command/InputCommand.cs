@@ -43,7 +43,7 @@ public class InputCommand : MonoBehaviour
         ICommand command = new MoveCommand(dir);
         // 直接するのではなくコマンドマネージャーのメソッドで呼ぶ
         _commandManager.ExecuteCommand(command);
-
+        // 方向をスタックに格納する
         _commandManager.AddDirStack(dir);
     }
 
@@ -79,6 +79,7 @@ public class InputCommand : MonoBehaviour
 
     void OnSubmitClicked()
     {
-        //StartCoroutine(_playerMove.Move(_commandManager.GetDirList()));
+        PlayerMove pm = FindObjectOfType<PlayerMove>();
+        StartCoroutine(pm.Move(_commandManager.GetDirQueue()));
     }
 }
