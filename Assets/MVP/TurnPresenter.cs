@@ -10,7 +10,7 @@ using UniRx;
 public class TurnPresenter : MonoBehaviour
 {
     [SerializeField] TurnView _view;
-    [SerializeField] MVPTest _model;
+    [SerializeField] GameManager _model;
 
     void Start()
     {
