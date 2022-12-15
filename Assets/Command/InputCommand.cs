@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class InputCommand : MonoBehaviour
 {
+    [SerializeField] PlayerMove _playerMove;
     [Space(10)]
     [SerializeField] Button _upArrow;
     [SerializeField] Button _downArrow;
@@ -79,7 +80,9 @@ public class InputCommand : MonoBehaviour
 
     void OnSubmitClicked()
     {
-        PlayerMove pm = FindObjectOfType<PlayerMove>();
-        StartCoroutine(pm.Move(_commandManager.GetDirQueue()));
+        StartCoroutine(_playerMove.Move(_commandManager.GetDirQueue()));
+
+        // スタックをすべてクリアする
+        _commandManager.ClearAllStack();
     }
 }

@@ -30,6 +30,14 @@ public class CommandManager
         _redoDirStack.Clear();
     }
 
+    public void ClearAllStack()
+    {
+        _undoStack.Clear();
+        _redoStack.Clear();
+        _undoDirStack.Clear();
+        _redoDirStack.Clear();
+    }
+
     public void UndoCommand()
     {
         if (_undoStack.Count > 0)
