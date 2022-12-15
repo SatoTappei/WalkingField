@@ -325,6 +325,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6363880159572017889, guid: fe4dedf0591eab44db7f100b7dbbd240, type: 3}
+      propertyPath: _cellSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6363880159572017890, guid: fe4dedf0591eab44db7f100b7dbbd240, type: 3}
       propertyPath: m_Name
       value: Player
@@ -404,6 +408,26 @@ PrefabInstance:
     - target: {fileID: 9050004645155849709, guid: fc49aba8425bb894a93a87cf0043bf04, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050004645155849710, guid: fc49aba8425bb894a93a87cf0043bf04, type: 3}
+      propertyPath: _width
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050004645155849710, guid: fc49aba8425bb894a93a87cf0043bf04, type: 3}
+      propertyPath: _height
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050004645155849710, guid: fc49aba8425bb894a93a87cf0043bf04, type: 3}
+      propertyPath: _offsetX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050004645155849710, guid: fc49aba8425bb894a93a87cf0043bf04, type: 3}
+      propertyPath: _offsetY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050004645155849710, guid: fc49aba8425bb894a93a87cf0043bf04, type: 3}
+      propertyPath: _cellSize
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc49aba8425bb894a93a87cf0043bf04, type: 3}
