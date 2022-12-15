@@ -10,8 +10,8 @@ public class Generator : MonoBehaviour
 
     [SerializeField] int _width;
     [SerializeField] int _height;
-    [SerializeField] int _offsetX;
-    [SerializeField] int _offsetY;
+    [SerializeField] float _offsetX;
+    [SerializeField] float _offsetY;
     [SerializeField] float _cellSize = 0.64f;
 
     IEnumerator Start()
